@@ -2,6 +2,7 @@
 <resources>
 
     <string name="login_txt_size">20sp</string>
+    <string name="txt_size_16">16sp</string>
 
 
 </resources>

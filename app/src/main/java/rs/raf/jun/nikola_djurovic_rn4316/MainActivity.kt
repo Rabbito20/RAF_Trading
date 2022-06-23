@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import rs.raf.jun.nikola_djurovic_rn4316.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,19 +16,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         try {
-            splashScreen.apply { /* TODO */ }
-
-            setContentView(R.layout.activity_main)
-
-            val btnStart = findViewById<Button>(R.id.btnMain)
-            btnStart.setOnClickListener {
-                //  Ovo ce nam biti potrebno kasnije
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                //  Zavrsava prethodni activity
-                finish()
+            splashScreen.apply {
+                setContentView(R.layout.activity_main)
             }
-        } catch (e: IllegalStateException) {
+
+            //  TODO: If ulogovan idi na main
+            //   else
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            //  Zavrsava prethodni activity
+            finish()
+
+
+
+        } catch (e: RuntimeException) {
             e.printStackTrace()
         }
 

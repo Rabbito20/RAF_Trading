@@ -15,5 +15,8 @@
     <string name="password_lbl">Password</string>
     <string name="mail_lbl">Email</string>
     <string name="login_btn">Login</string>
+    <string name="mail_error_msg">Please enter a valid mail address!</string>
+    <string name="password_error_msg">Password must have at least 5 characters!</string>
+
 
 </resources>
