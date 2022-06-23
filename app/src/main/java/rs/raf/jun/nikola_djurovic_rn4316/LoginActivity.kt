@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val USERNAME = "Nikola"
-    private val EMAIL = "mail@gmail.com"
+    private val EMAIL = "mail@gmail.rs"
     private val PASSWORD = "sifra123"
 
     //  Email check
