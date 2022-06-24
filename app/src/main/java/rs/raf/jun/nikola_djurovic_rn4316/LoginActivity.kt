@@ -1,18 +1,17 @@
 package rs.raf.jun.nikola_djurovic_rn4316
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.UserHandleCompat
 import androidx.core.view.isGone
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import rs.raf.jun.nikola_djurovic_rn4316.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
+    public val SHARED_LOGIN_KEY = "loginPref"
     private lateinit var binding: ActivityLoginBinding
 
     private val USERNAME = "Nikola"
@@ -22,8 +21,12 @@ class LoginActivity : AppCompatActivity() {
     //  Email check
     var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    //  Kljucevi
+    val USER_KEY = "username"
+    val PASS_KEY = "password"
+    val EMAIL_KEY = "email"
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -31,9 +34,9 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
 
-            var username = binding.etUsername.text!!.toString()
-            var password = binding.etPassword.text!!.toString()
-            var email = binding.etMail.text.toString()
+            val username = binding.etUsername.text.toString()
+            val password = binding.etPassword.text.toString()
+            val email = binding.etMail.text.toString()
 
             //  Provera maila
             var boolMail = false
@@ -41,10 +44,8 @@ class LoginActivity : AppCompatActivity() {
                 boolMail = true
 
             //  Provera duzine passworda
-            if (password.length < 5)
-                binding.passwordErrorMsg.isVisible = true
-            else
-                binding.passwordErrorMsg.isGone = true
+            if (password.length < 5) binding.passwordErrorMsg.isVisible =
+                true else binding.passwordErrorMsg.isGone = true
 
             //  Login provera
             if (username == USERNAME &&
@@ -54,15 +55,26 @@ class LoginActivity : AppCompatActivity() {
                 binding.mailErrorMsg.isGone = true
                 //  Otvaramo Main Screen
                 Toast.makeText(this, "Processing...", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainScreenActivity::class.java)
+
+                //  Pamtimo u shared pref
+                val sharedPref = getSharedPreferences(SHARED_LOGIN_KEY, Context.MODE_PRIVATE)
+                val editor = sharedPref.edit()
+                editor.apply {
+//                    putString("key", vrednost)
+                    putString(USER_KEY, username)
+                    putString(EMAIL_KEY, email)
+                    putString(PASS_KEY, password)
+                    apply()
+                }
+
+                //  Otvaramo main screen
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 //  Zavrsava prethodni activity
                 finish()
             } else {
-                if (boolMail)
-                    binding.mailErrorMsg.isGone = true
-                else
-                    binding.mailErrorMsg.isVisible = true
+                if (boolMail) binding.mailErrorMsg.isGone =
+                    true else binding.mailErrorMsg.isVisible = true
 
                 Toast.makeText(this, "Check your login info!", Toast.LENGTH_SHORT).show()
             }
