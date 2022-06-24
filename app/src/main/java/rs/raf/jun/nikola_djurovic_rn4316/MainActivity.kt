@@ -16,23 +16,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         try {
+            val intent = Intent(this, LoginActivity::class.java)
             splashScreen.apply {
                 setContentView(R.layout.activity_main)
-            }
 
-            //  TODO: If ulogovan idi na main
+            //  TODO: If ulogovan idi na main screen
             //   else
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            //  Zavrsava prethodni activity
-            finish()
-
-
+                startActivity(intent)
+                //  Zavrsava prethodni activity
+                finish()
+            }
 
         } catch (e: RuntimeException) {
             e.printStackTrace()
         }
-
 
     }
 
