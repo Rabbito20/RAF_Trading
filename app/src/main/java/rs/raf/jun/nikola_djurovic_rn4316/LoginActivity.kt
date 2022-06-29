@@ -11,7 +11,7 @@ import rs.raf.jun.nikola_djurovic_rn4316.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
-    public val SHARED_LOGIN_KEY = "loginPref"
+    val SHARED_LOGIN_KEY = "loginPref"
     private lateinit var binding: ActivityLoginBinding
 
     private val USERNAME = "Nikola"
@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
 
+            //  Uzimamo vrednosti
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
             val email = binding.etMail.text.toString()

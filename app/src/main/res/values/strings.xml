@@ -17,6 +17,12 @@
     <string name="login_btn">Login</string>
     <string name="mail_error_msg">Please enter a valid mail address!</string>
     <string name="password_error_msg">Password must have at least 5 characters!</string>
+    <string name="logout_btn">Log Out</string>
+
+    <string name="discover_btn">Discover</string>
+    <string name="portfolio_btn">Portfolio</string>
+    <string name="profile_btn">Profile</string>
+
 
 
 </resources>
